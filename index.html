@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>testing-in-prod — ship it, watch it, fix it live</title>
+<meta name="description" content="No staging. No pretending. Deploy straight to prod, watch it in real time, and roll back in one click if it goes sideways." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow bg-glow--a" aria-hidden="true"></div>
+<div class="bg-glow bg-glow--b" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#top" class="brand">
+      <span class="brand__mark">🔥</span>
+      <span class="brand__name">testing-in-prod</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#proof">Proof</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--ghost nav__cta" href="#cta">Get early access</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow"><span class="eyebrow__dot"></span> now shipping straight to prod</p>
+      <h1 class="hero__title">
+        Skip staging.
+        <span class="grad-text">Ship the truth.</span>
+      </h1>
+      <p class="hero__subtitle">
+        testing-in-prod is the deploy pipeline for people who trust their code, their rollback button,
+        and their instincts. Push, watch real users hit it in real time, and roll back in
+        <span class="nowrap">one click</span> if it goes sideways.
+      </p>
+      <div class="hero__actions">
+        <a href="#cta" class="btn btn--primary">Burn the staging server</a>
+        <a href="#how" class="btn btn--secondary">See how it works</a>
+      </div>
+      <div class="hero__trust">
+        <span>Trusted by teams brave enough to skip the sandbox</span>
+      </div>
+    </div>
+
+    <div class="hero__panel" role="img" aria-label="Live deploy console showing a production release rolling out">
+      <div class="panel">
+        <div class="panel__bar">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--yellow"></span>
+          <span class="dot dot--green"></span>
+          <span class="panel__title">prod — live</span>
+        </div>
+        <div class="panel__body">
+          <p><span class="pl-ok">✓</span> deploy <span class="pl-dim">main@a1c9f3e</span> → <span class="pl-accent">production</span></p>
+          <p><span class="pl-ok">✓</span> health checks passing <span class="pl-dim">(4/4)</span></p>
+          <p><span class="pl-warn">▲</span> traffic ramping <span class="pl-dim">10% → 100%</span></p>
+          <p class="pl-type"><span class="pl-ok">✓</span> 12,403 real users served, 0 rollbacks<span class="cursor">▌</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos" aria-label="Used by">
+    <div class="logos__inner">
+      <span>NOSTAGING.CO</span>
+      <span>SHIPFAST LABS</span>
+      <span>YOLO DEPLOY</span>
+      <span>REAL TRAFFIC INC</span>
+      <span>ROLLBACK.DEV</span>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--center"><span class="eyebrow__dot"></span> why us</p>
+      <h2>Built for people who deploy on Fridays</h2>
+      <p class="section-head__sub">Every feature exists to make production the safest place to find out if it works.</p>
+    </div>
+    <div class="grid grid--features">
+      <article class="card">
+        <div class="card__icon">⚡</div>
+        <h3>One-click rollback</h3>
+        <p>The second something looks wrong, snap back to the last good release. No incident channel required.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon">📈</div>
+        <h3>Live traffic ramping</h3>
+        <p>Send 1% of real users to your change, watch the metrics, then ramp to 100% — all without a second environment.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon">🩺</div>
+        <h3>Real-time health signals</h3>
+        <p>Error rates, latency, and business metrics update the instant your deploy hits real traffic — not a synthetic test.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon">🧯</div>
+        <h3>Automatic guardrails</h3>
+        <p>Set a threshold, and testing-in-prod rolls back for you before your users even notice a blip.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon">🔍</div>
+        <h3>Full request replay</h3>
+        <p>Every request during a rollout is captured, so you can replay exactly what a user saw, in exact order.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon">🤝</div>
+        <h3>Built-in team trust</h3>
+        <p>A shared feed of every deploy, ramp, and rollback — so "who shipped this" is never a mystery.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="how" class="how">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--center"><span class="eyebrow__dot"></span> the flow</p>
+      <h2>Three steps. Zero staging servers.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">01</div>
+        <h3>Push</h3>
+        <p>Merge to main. Your change deploys straight to a slice of production traffic, automatically.</p>
+      </div>
+      <div class="step__line" aria-hidden="true"></div>
+      <div class="step">
+        <div class="step__num">02</div>
+        <h3>Watch</h3>
+        <p>Live dashboards show real errors, real latency, real users — not a simulation of them.</p>
+      </div>
+      <div class="step__line" aria-hidden="true"></div>
+      <div class="step">
+        <div class="step__num">03</div>
+        <h3>Ramp or roll back</h3>
+        <p>Looks good? Ramp to 100%. Looks bad? One click undoes it. Either way, you knew in minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" class="stats">
+    <div class="stats__inner">
+      <div class="stat">
+        <span class="stat__num">0</span>
+        <span class="stat__label">staging servers required</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">&lt;60s</span>
+        <span class="stat__label">from push to real traffic</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">1-click</span>
+        <span class="stat__label">rollback, every time</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">100%</span>
+        <span class="stat__label">honest about where you deploy</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <blockquote>
+      “We deleted staging on a Tuesday and shipped 40% faster by Friday.
+      Turns out production was the only environment that ever told us the truth.”
+    </blockquote>
+    <p class="quote__author">— Head of Platform, a team that no longer fears deploys</p>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--center"><span class="eyebrow__dot"></span> questions</p>
+      <h2>Before you burn the sandbox down</h2>
+    </div>
+    <div class="faq__list">
+      <details class="faq__item" open>
+        <summary>Isn't testing in production risky?</summary>
+        <p>Less risky than a staging environment that lies to you. Guardrails, traffic ramping, and one-click rollback mean real users see your change for seconds, not days, if something's wrong.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Do I need to change my whole pipeline?</summary>
+        <p>No. Point your existing deploy step at testing-in-prod and it handles ramping, monitoring, and rollback for you.</p>
+      </details>
+      <details class="faq__item">
+        <summary>What happens if a rollout fails?</summary>
+        <p>Automatic guardrails catch error-rate and latency regressions and roll back before most users ever see them — no pager required.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Can I keep a staging environment too?</summary>
+        <p>Sure, if you like paying for two environments that both eventually have to be tested against reality anyway.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="cta" class="cta">
+    <div class="cta__inner">
+      <h2>Your users are already testing your code.<br />Might as well watch it happen.</h2>
+      <div class="hero__actions">
+        <a href="#top" class="btn btn--primary">Get early access</a>
+        <a href="#how" class="btn btn--secondary">Read the docs</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="brand">
+      <span class="brand__mark">🔥</span>
+      <span class="brand__name">testing-in-prod</span>
+    </div>
+    <p class="footer__tag">Deploy like you mean it.</p>
+    <p class="footer__copy">© 2026 testing-in-prod. No staging environments were harmed in the making of this page.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

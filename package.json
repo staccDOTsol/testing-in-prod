@@ -1,0 +1,10 @@
+{
+  "name": "testing-in-prod-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page for testing-in-prod",
+  "scripts": {
+    "dev": "npx --yes serve .",
+    "build": "echo 'static site — nothing to build' && exit 0"
+  }
+}
