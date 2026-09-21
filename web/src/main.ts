@@ -73,10 +73,11 @@ function renderGate(): HTMLElement {
   el.className = "gate";
   el.innerHTML = `
     <div class="gate__box">
-      <div class="gate__title">⌗ onchain-irc</div>
-      <p class="gate__tagline">ENS identities. Wallet-signed sign-in. Lit-encrypted DMs and groupchats.</p>
+      <div class="gate__title">🔥 app.burnpr.fun</div>
+      <p class="gate__tagline">A proof of concept for <a href="https://burnpr.fun" target="_blank" rel="noopener">burnpr.fun</a> — burn an NFT, spend one prompt, watch a product change forever. This one runs on ENS identities, wallet-signed sign-in, and Lit-encrypted DMs and groupchats.</p>
       <button id="connect-btn" class="btn">${hasInjectedWallet() ? "Connect Wallet" : "No wallet found"}</button>
       <p class="gate__status" id="gate-status"></p>
+      <p class="footer-credit">changed by burns · <a href="https://burnpr.fun" target="_blank" rel="noopener">burnpr.fun</a></p>
     </div>
   `;
   const btn = el.querySelector<HTMLButtonElement>("#connect-btn")!;
@@ -91,11 +92,12 @@ function buildShell(): HTMLElement {
   const identity = state.identity!;
   el.innerHTML = `
     <header class="topbar">
-      <div class="brand">⌗ onchain-irc</div>
+      <div class="brand">🔥 app.burnpr.fun</div>
       <div class="identity">
         <span class="identity__dot"></span>
         <span id="identity-name">${identity.ens || shortAddress(identity.address)}</span>
         <button id="disconnect-btn" class="btn btn--ghost">sign out</button>
+        <span class="topbar__footer-credit">changed by burns · <a href="https://burnpr.fun" target="_blank" rel="noopener">burnpr.fun</a></span>
       </div>
     </header>
     <div class="body">

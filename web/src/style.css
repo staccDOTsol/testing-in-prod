@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 :root {
-  --bg: #0b0e0c;
-  --bg-raised: #10140f;
-  --border: #1f2b1f;
-  --fg: #c9f2c0;
-  --fg-dim: #6d8a68;
-  --accent: #35e06a;
-  --accent-dim: #1c7a3d;
-  --danger: #e0574f;
+  --bg: #0e0908;
+  --bg-raised: #160f0c;
+  --border: #33201a;
+  --fg: #f7dfc4;
+  --fg-dim: #9a7a63;
+  --accent: #ff6a2b;
+  --accent-dim: #b33e12;
+  --accent-hot: #ffb238;
+  --danger: #ff4757;
   font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 
@@ -26,7 +27,8 @@ body,
 body {
   background: var(--bg);
   color: var(--fg);
-  background-image: radial-gradient(circle at 20% 0%, rgba(53, 224, 106, 0.06), transparent 40%);
+  background-image: radial-gradient(circle at 20% 0%, rgba(255, 106, 43, 0.09), transparent 40%),
+    radial-gradient(circle at 85% 100%, rgba(255, 178, 56, 0.05), transparent 45%);
 }
 
 .boot {
@@ -40,7 +42,7 @@ button {
 
 .btn {
   background: var(--accent-dim);
-  color: #ecfff1;
+  color: #fff3e6;
   border: 1px solid var(--accent);
   padding: 0.45rem 0.9rem;
   border-radius: 3px;
@@ -99,6 +101,32 @@ button {
   min-height: 1.2em;
   color: var(--fg-dim);
   font-size: 0.85rem;
+}
+
+.footer-credit {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+}
+.footer-credit a {
+  color: var(--accent-hot);
+  text-decoration: none;
+}
+.footer-credit a:hover {
+  text-decoration: underline;
+}
+.topbar__footer-credit {
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+}
+.topbar__footer-credit a {
+  color: var(--accent-hot);
+  text-decoration: none;
+}
+.topbar__footer-credit a:hover {
+  text-decoration: underline;
 }
 
 /* shell */
@@ -174,11 +202,11 @@ button {
   text-overflow: ellipsis;
 }
 .list__item:hover {
-  background: rgba(53, 224, 106, 0.08);
+  background: rgba(255, 106, 43, 0.10);
   color: var(--fg);
 }
 .list__item--active {
-  background: rgba(53, 224, 106, 0.14);
+  background: rgba(255, 106, 43, 0.16);
   color: var(--accent);
   border-left: 2px solid var(--accent);
 }

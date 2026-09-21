@@ -1,6 +1,6 @@
-# onchain-irc
+# app.burnpr.fun
 
-A SaaS boilerplate for an IRC-flavored onchain chat app:
+A proof of concept for [burnpr.fun](https://burnpr.fun) — a product where every feature exists because someone burned an NFT and spent one prompt on it. This app is deployed at the `app.burnpr.fun` subdomain, itself a burn: an IRC-flavored onchain chat SaaS boilerplate, unchanged in function, restyled around its home:
 
 - **Identity**: your ENS name, resolved client-side — no separate account system.
 - **Auth**: sign-in-with-Ethereum-style flow — sign a nonce with your wallet, trade it for a session token. No passwords, no email.

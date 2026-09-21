@@ -1,8 +1,8 @@
 {
-  "name": "onchain-irc",
+  "name": "app-burnpr-fun",
   "version": "0.1.0",
   "private": true,
-  "description": "SaaS boilerplate for an IRC-flavored onchain chat app: ENS identity, Ethereum message-signing auth, and Lit Protocol encrypted DMs/groupchats.",
+  "description": "app.burnpr.fun — a proof of concept for burnpr.fun: an IRC-flavored onchain chat app with ENS identity, Ethereum message-signing auth, and Lit Protocol encrypted DMs/groupchats.",
   "workspaces": [
     "server",
     "web"
