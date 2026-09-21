@@ -1,6 +1,6 @@
 import type { JsonRpcSigner } from "ethers";
 
-const SESSION_KEY = "onchain-irc:session";
+const SESSION_KEY = "app.burnpr.fun:session";
 
 interface StoredSession {
   address: string;

@@ -37,10 +37,10 @@ function pushHistory(channel, entry) {
 function buildSignInMessage(address, nonce) {
   const issuedAt = new Date().toISOString();
   return [
-    `onchain-irc wants you to sign in with your Ethereum account:`,
+    `app.burnpr.fun wants you to sign in with your Ethereum account:`,
     address,
     ``,
-    `Sign in to onchain-irc. This request will not trigger a blockchain transaction or cost any gas.`,
+    `Sign in to app.burnpr.fun, a proof of concept for burnpr.fun. This request will not trigger a blockchain transaction or cost any gas.`,
     ``,
     `Nonce: ${nonce}`,
     `Issued At: ${issuedAt}`,
@@ -224,6 +224,6 @@ wss.on("connection", (ws) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`onchain-irc server listening on :${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`app.burnpr.fun server listening on 0.0.0.0:${PORT}`);
 });
