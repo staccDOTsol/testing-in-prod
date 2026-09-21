@@ -1,18 +1,11 @@
 {
-  "name": "onchain-irc",
+  "name": "burnpr",
   "version": "0.1.0",
   "private": true,
-  "description": "SaaS boilerplate for an IRC-flavored onchain chat app: ENS identity, Ethereum message-signing auth, and Lit Protocol encrypted DMs/groupchats.",
-  "workspaces": [
-    "server",
-    "web"
-  ],
+  "type": "module",
+  "description": "burnpr — burn a Homecoming NFT, get one prompt, an agent ships it. Proof-of-concept front end for app.burnpr.fun.",
   "scripts": {
-    "dev": "concurrently -k -n server,web -c blue,magenta \"npm run dev -w server\" \"npm run dev -w web\"",
-    "build": "npm run build -w web",
-    "start": "node server/src/index.js"
-  },
-  "devDependencies": {
-    "concurrently": "^9.1.0"
+    "start": "node server.js",
+    "dev": "node server.js"
   }
 }
