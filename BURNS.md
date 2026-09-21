@@ -36,3 +36,31 @@ Build passes cleanly. Everything is in order.
 Rebranded the onchain-IRC app entirely around being **app.burnpr.fun**, a proof of concept for burnpr.fun — new title/copy/gate/topbar, a fire-toned (orange/red) restyle of the existing terminal-IRC theme, the SIWE sign-in message, and a "changed by burns · burnpr.fun" footer credit link, while leaving the ENS/wallet-auth/Lit-encrypted chat functionality untouched. Also added a working `Dockerfile` (multi-stage: full workspace build, then a lean runtime with just server deps + built web assets) and `fly.toml` targeting app `testing-in-prod-staccdotsol` on port 8787, both verified locally (build + server smoke test).
 
 [burn tx](https://explorer.mainnet.chain.robinhood.com/tx/0x5e1998960d773e6691b4751f3d52302cae3e2c9252c9dc711aa0323aa316a5f5)
+
+## #6980 — 2026-09-21
+
+> ailed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> yellowstone-rpc.litprotocol.com/:1  Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> yellowstone-rpc.litprotocol.com/:1  Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> yellowstone-rpc.litprotocol.com/:1  Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> yellowstone-rpc.litprotocol.com/:1  Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> yellowstone-rpc.litprotocol.com/:1  Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> yellowstone-rpc.litprotocol.com/:1  Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> yellowstone-rpc.litprotocol.com/:1  Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+> index-EmfP9-fs.js:45 Error: could not detect network (event="noNetwork", code=NETWORK_ERROR, version=providers/5.8.0)
+>     at L.makeError (lit-CWgKc3qf.js:67:54564)
+>     at L.throwError (lit-CWgKc3qf.js:67:54682)
+>     at _ae.<anonymous> (lit-CWgKc3qf.js:1191:106745)
+>     at Generator.throw (<anonymous>)
+>     at c (lit-CWgKc3qf.js:1191:99015)
+> Km @ index-EmfP9-fs.js:45
+> 
+> lit protocol upgrades you're unaware of I guess
+
+Clean diff, ready to hand off.
+
+I investigated the console errors — TLS cert failures against `yellowstone-rpc.litprotocol.com` and an ethers "no network detected" error from inside Lit's SDK. Checked the npm registry directly: **every published `@lit-protocol/*` package is now marked deprecated**, including both the `datil-*` generation this app used *and* the newer `naga` generation that superseded it — Lit has moved its "current SDK" to a server-side, API-key-based model that isn't a drop-in replacement for this app's client-side wallet-gated encryption (confirmed by trying to migrate to `naga`, which also hit real disk limits in this sandbox before I found it was itself deprecated).
+
+Given that, I made the smallest change that actually fixes the reported symptom rather than chasing a moving, now-abandoned target: `web/src/lib/lit.ts` now bounds the Lit node connect attempt with a 12s timeout and clears the cached client promise on failure (previously a broken connection got cached forever, so nothing could ever retry). Encrypt/decrypt failures now surface a clear, specific error message in the UI instead of console-only noise. Updated the README to document Lit's ecosystem-wide deprecation honestly for future maintainers. Verified with a full build and a server smoke test — both pass.
+
+[burn tx](https://explorer.mainnet.chain.robinhood.com/tx/0xe9b3d79d5c293297c28591b2bf2687f218b3fa83b12877d5a84556758da070f4)

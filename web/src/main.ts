@@ -222,6 +222,7 @@ function renderMessage(msg: ChatMessage): HTMLElement {
         } catch (err) {
           btn.disabled = false;
           btn.textContent = "🔒 decrypt failed — retry";
+          btn.title = err instanceof Error ? err.message : "";
           console.error(err);
         }
       });
@@ -377,7 +378,7 @@ async function handleSend(e: SubmitEvent) {
       body = JSON.stringify(payload);
     } catch (err) {
       console.error(err);
-      alert("encryption failed — see console");
+      alert(err instanceof Error ? err.message : "encryption failed — see console");
       input.disabled = false;
       return;
     }
