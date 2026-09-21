@@ -10,14 +10,33 @@ const CHAIN = "ethereum";
 const NETWORK = (import.meta.env.VITE_LIT_NETWORK ||
   LIT_NETWORK.DatilDev) as (typeof LIT_NETWORK)[keyof typeof LIT_NETWORK];
 
+// Lit's public node endpoints have gotten flaky (TLS/handshake failures against
+// yellowstone-rpc.litprotocol.com) as Lit rolls out network upgrades. Bound the connect
+// attempt so a bad node doesn't hang the UI, and drop the cached promise on failure —
+// otherwise every future call would just replay the same stuck rejection forever.
+const CONNECT_TIMEOUT_MS = 12_000;
+
 let clientPromise: Promise<LitNodeClient> | null = null;
 function getClient(): Promise<LitNodeClient> {
-  clientPromise ??= (async () => {
-    const client = new LitNodeClient({ litNetwork: NETWORK, debug: false });
-    await client.connect();
-    return client;
-  })();
+  clientPromise ??= connectClient().catch((err) => {
+    clientPromise = null;
+    throw err;
+  });
   return clientPromise;
+}
+
+async function connectClient(): Promise<LitNodeClient> {
+  const client = new LitNodeClient({ litNetwork: NETWORK, debug: false });
+  await Promise.race([
+    client.connect(),
+    new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error("Lit Protocol's network is unreachable right now — try again in a bit.")),
+        CONNECT_TIMEOUT_MS,
+      ),
+    ),
+  ]);
+  return client;
 }
 
 /** "Any of these wallets can decrypt" — used for both 2-party DMs and groupchat members. */

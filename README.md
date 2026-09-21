@@ -27,7 +27,7 @@ Open http://localhost:5173, connect a wallet, and sign the sign-in message. The 
 
 Copy `web/.env.example` to `web/.env` to point ENS lookups at your own RPC or switch the Lit network (defaults: a public mainnet RPC, and Lit's `datil-dev` test network).
 
-> Lit Protocol's network generations move fast — `@lit-protocol/lit-node-client@7.x` (used here, targeting `datil-*`) is npm's current `latest`, but Lit's next generation (`naga`) was in alpha at the time this was written. Check [Lit's docs](https://developer.litprotocol.com) before shipping this to production.
+> Lit Protocol's network generations move fast — as of this writing, npm marks every published `@lit-protocol/*` package (the `datil-*` generation used here, *and* the newer `naga` generation that superseded it) as deprecated, pointing at [Lit's docs](https://developer.litprotocol.com) for "the current SDK," which has moved to a server-side, API-key-based model (Lit Actions running in a TEE) that isn't a drop-in replacement for this app's client-side, wallet-gated encryption. In practice this means the Lit node network `getClient()` connects to in `web/src/lib/lit.ts` may be unreachable — encrypt/decrypt now fail fast (bounded connect timeout) with a clear error instead of hanging, but the feature is only as reliable as Lit's currently-running infrastructure. Check Lit's docs before relying on this in production, and see `web/src/lib/lit.ts` for where to swap in whatever SDK generation is current when you read this.
 
 ## Building for production
 
